@@ -25,10 +25,21 @@ public class UserService {
                 .name(userInfo.getUserName())
                 .email(userInfo.getUserEmail())
                 .build();
-        System.out.println("insertObject.toString() = " + insertObject.toString());
-        userRepository.saveUser(insertObject);
+        userRepository.save(insertObject);
+        return false;
+    }
+
+    /**
+     * 회원 조회 서비스
+     * */
+    public boolean findUserInformation(String userId){
+        User byUserId = userRepository.findByUserId(userId);
+
+        System.out.println("searched User Id : "+byUserId.getUserName());
 
         return false;
     }
+
+
 }
 
