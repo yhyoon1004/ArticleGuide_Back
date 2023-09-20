@@ -15,26 +15,22 @@ public class ArticleController {
         return "hello";
     }
 
-    /**
-     * 회원가입하기
+    /**회원가입하기
      * POST-JSON값으로 회원 정보 전송
      * */
     @PostMapping(value = "/sign_up", consumes = "application/json")
-    public String userSignUp(@RequestBody UserInfo userInfo) {
+    public Boolean userSignUp(@RequestBody UserInfo userInfo) {
         System.out.println("userInfo = " + userInfo.getUserId());
-        userService.signUpService(userInfo);
-        return "OK";
+        return userService.signUpService(userInfo);
     }
 
-    /**
-     * 아이디로 회원 정보 찾기
+    /** 아이디로 회원 정보 찾기
      * @param userId
-     * @return
+     * @return UserInfo
      */
     @GetMapping("/userInfo/{userId}")
-    public String userInfo(@PathVariable String userId){
-        boolean isOk = userService.findUserInformation(userId);
-        return "OK";
+    public UserInfo userInfo(@PathVariable String userId){
+        return userService.findUserInformation(userId);
     }
 
 }

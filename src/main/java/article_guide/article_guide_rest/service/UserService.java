@@ -25,19 +25,29 @@ public class UserService {
                 .name(userInfo.getUserName())
                 .email(userInfo.getUserEmail())
                 .build();
-        userRepository.save(insertObject);
-        return false;
+        User savedUser = userRepository.save(insertObject);
+
+        return savedUser != null;
     }
 
     /**
      * 회원 조회 서비스
-     * */
-    public boolean findUserInformation(String userId){
+     */
+    public UserInfo findUserInformation(String userId) {
         User byUserId = userRepository.findByUserId(userId);
 
-        System.out.println("searched User Id : "+byUserId.getUserName());
+        if (byUserId == null) {
+            return null;
+        }
 
-        return false;
+        UserInfo result = UserInfo.builder()
+                .userId(byUserId.getUserId())
+                .userPassword(byUserId.getUserPassword())
+                .userName(byUserId.getUserName())
+                .userEmail(byUserId.getUserEmail())
+                .build();
+
+        return result;
     }
 
 
