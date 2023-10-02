@@ -22,12 +22,14 @@ public class SecurityConfig {
         httpSecurity
                 .authorizeHttpRequests(config -> config
                         .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
+                        .requestMatchers("/article/**").hasRole("ADMIN")
                         .anyRequest().permitAll()
                 );
 
         //로그인 설정
-        httpSecurity.formLogin(loginConfig -> loginConfig
-                .defaultSuccessUrl("/",true)
+        httpSecurity
+                .formLogin(loginConfig -> loginConfig
+                .defaultSuccessUrl("/", true)
                 .permitAll()
         );
 
