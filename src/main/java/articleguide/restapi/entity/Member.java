@@ -23,6 +23,8 @@ public class Member {
     @Email
     private String email;
 
+
+
     @Builder
     public Member(String username, String password, String name, String email) {
         this.id=null;
