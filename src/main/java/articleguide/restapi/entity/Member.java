@@ -7,12 +7,13 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
 @RequiredArgsConstructor
 public class Member {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String username;
@@ -23,14 +24,28 @@ public class Member {
     @Email
     private String email;
 
+    private String role;
+
 
 
     @Builder
-    public Member(String username, String password, String name, String email) {
+    public Member(String username, String password, String name, String email,String role) {
         this.id=null;
         this.username = username;
         this.password = password;
         this.name = name;
         this.email = email;
+        this.role = role;
+    }
+
+    public static Member createMember(String userId, String password, String name, String email, String role, PasswordEncoder passwordEncoder){
+        return Member.builder()
+                .username(userId)
+                .password(passwordEncoder.encode(password))
+                .name(name)
+                .email(email)
+                .role(role)
+                .build();
     }
 }
+

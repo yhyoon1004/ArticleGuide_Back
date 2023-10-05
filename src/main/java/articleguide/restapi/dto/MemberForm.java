@@ -9,6 +9,7 @@ public class MemberForm {
     private String password;
     private String name;
     private String email;
+    private String role;
 
     public Member toEntity() {
         return Member.builder()
@@ -16,6 +17,7 @@ public class MemberForm {
                 .password(this.password)
                 .name(this.name)
                 .email(this.email)
+                .role(this.role)
                 .build();
     }
 }

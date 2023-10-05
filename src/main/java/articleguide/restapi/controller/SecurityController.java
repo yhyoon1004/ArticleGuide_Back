@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class SecurityController {
     private final MemberService memberService;
-    @GetMapping("signup")
+    @PostMapping("signup")
     @ResponseBody
     public String signup(@RequestBody MemberForm memberForm) {
         //가입하고자 하는 Id가 존재하면 회원가입 실패
