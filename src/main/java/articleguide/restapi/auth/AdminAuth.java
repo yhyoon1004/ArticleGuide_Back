@@ -1,4 +1,4 @@
-package articleguide.restapi.authentication;
+package articleguide.restapi.auth;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 

@@ -1,4 +1,4 @@
-package articleguide.restapi.authentication;
+package articleguide.restapi.auth;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 
@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-@PreAuthorize("hasRole('MEMBER')")
-public @interface MemberAuth {
+@PreAuthorize("hasRole('MANAGER')")
+public @interface ManagerAuth {
 }

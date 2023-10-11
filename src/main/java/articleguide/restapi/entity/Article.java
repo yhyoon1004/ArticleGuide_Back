@@ -17,15 +17,11 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String category;
     private String title;
-
     private String content;
-
     private String summary;
-
     private String keyword;
-
     private String byline;
     @CreatedDate
     private Timestamp createdTime;
@@ -33,7 +29,8 @@ public class Article {
     private Timestamp modifiedTime;
 
     @Builder
-    public Article(String title, String content, String byline, String keyword, String summary) {
+    public Article(String category,String title, String content, String byline, String keyword, String summary) {
+        this.category =category;
         this.title = title;
         this.content = content;
         this.byline = byline;

@@ -28,7 +28,6 @@ public class SecurityConfig {
         httpSecurity
                 .authorizeHttpRequests(config -> config
                         .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-//                        .requestMatchers("/article/**").hasRole("ADMIN")
                         .anyRequest().permitAll()
                 );
 
