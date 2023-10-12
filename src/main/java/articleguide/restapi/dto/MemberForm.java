@@ -13,7 +13,7 @@ public class MemberForm {
 
     public Member toEntity() {
         return Member.builder()
-                .username(this.userId)
+                .userId(this.userId)
                 .password(this.password)
                 .name(this.name)
                 .email(this.email)
