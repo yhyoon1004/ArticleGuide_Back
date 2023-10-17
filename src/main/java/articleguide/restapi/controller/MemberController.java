@@ -4,16 +4,22 @@ import articleguide.restapi.auth.MemberAuth;
 import articleguide.restapi.dto.MemberForm;
 import articleguide.restapi.dto.MemberInfoDTO;
 import articleguide.restapi.dto.PasswordModifyDTO;
+import articleguide.restapi.entity.Member;
+import articleguide.restapi.repository.MemberRepository;
 import articleguide.restapi.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user/*")
 @RequiredArgsConstructor
 public class MemberController {
     private final MemberService memberService;
-
+    private final MemberRepository memberRepository;
 
     /**
      * 회원 가입
@@ -42,21 +48,21 @@ public class MemberController {
 
 
     /**
+     * 비밀번호 변경
+     */
+    @PostMapping("/password/change")
+    public Boolean modifyPassword(@AuthenticationPrincipal UserDetails userDetails, @RequestBody PasswordModifyDTO pmDTO) {
+        Optional<Member> findUser = memberRepository.findByUserId(userDetails.getUsername());
+        return null;
+    }
+
+    /**
      * 비밀번호 분실시 초기화
      * */
     @PostMapping("password/reset")
     @ResponseBody
     public String resetPassword() {
-
-        return null;
-    }
-
-    /**
-     * 비밀번호 변경
-     */
-    @PostMapping("")
-    public Boolean modifyPassword(@RequestBody PasswordModifyDTO pmDTO) {
-
+        //임의 문자열 생성 후, 반환해주는 서비스 필요
         return null;
     }
 

@@ -69,4 +69,10 @@ public class MemberService implements UserDetailsService {
 
         return info;
     }
+
+    /**
+     * 비밀번호 변경 서비스 로직*/
+    public void changePassword(UserDetails user, String newPassword) {
+        //기존 비밀번호 확인 분기 + 새 비밀번호 암호화 후 적용 로직
+    }
 }
