@@ -14,10 +14,14 @@ public class ArticleController {
     private final ArticleService articleService;
 
     @PostMapping("create")
-    @MemberAuth
     public String createArticle(@RequestBody ArticleForm articleForm) {
         articleService.createArticle(articleForm);
         return "";
+    }
+
+    @PostMapping("modify")
+    public Boolean modifyArticle(@RequestBody ArticleForm articleForm) {
+        return articleService.modifyArticle(articleForm);
     }
 
 }

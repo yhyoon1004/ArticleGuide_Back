@@ -1,8 +1,13 @@
 package articleguide.restapi.dto;
 
 import articleguide.restapi.entity.Article;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class ArticleForm {
+    private Long articleId;
     private String category;
     private String title;
     private String content;
