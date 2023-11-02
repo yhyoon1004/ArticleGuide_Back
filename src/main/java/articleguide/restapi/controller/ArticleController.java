@@ -13,15 +13,29 @@ public class ArticleController {
 
     private final ArticleService articleService;
 
+    /**
+     * parameter submit type = request body - json
+     * */
     @PostMapping("create")
-    public String createArticle(@RequestBody ArticleForm articleForm) {
-        articleService.createArticle(articleForm);
-        return "";
+    public boolean createArticle(@RequestBody ArticleForm articleForm) {
+        return articleService.createArticle(articleForm);
+
     }
 
+    /**
+     * parameter submit type = request body - json
+     * */
     @PostMapping("modify")
     public Boolean modifyArticle(@RequestBody ArticleForm articleForm) {
         return articleService.modifyArticle(articleForm);
+    }
+
+    /**
+     * parameter submit type = request body - form-data
+     * */
+    @PostMapping("delete")
+    public Boolean deleteArticle(@RequestParam long articleId) {
+        return articleService.deleteArticle(articleId);
     }
 
 }
