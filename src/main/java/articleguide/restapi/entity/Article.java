@@ -17,7 +17,7 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class Article {
+public class Article extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,10 +27,7 @@ public class Article {
     private String summary;
     private String keyword;
     private String byline;
-    @CreatedDate
-    private Timestamp createdTime;
-    @LastModifiedDate
-    private Timestamp modifiedTime;
+
 
     @Builder
     public Article(String category,String title, String content, String byline, String keyword, String summary) {

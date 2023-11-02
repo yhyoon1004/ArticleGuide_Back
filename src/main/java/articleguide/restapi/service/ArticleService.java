@@ -19,6 +19,8 @@ public class ArticleService {
     /**
      * 기사 생성
      * */
+    @Transactional
+
     public boolean createArticle(ArticleForm articleForm) {
         Article article = articleForm.toEntity();
         articleRepository.save(article);
@@ -33,7 +35,6 @@ public class ArticleService {
     public boolean modifyArticle(ArticleForm modifiedArticle) {
         Long articleId = modifiedArticle.getArticleId();
         Optional<Article> findArticleOptional = articleRepository.findById(articleId);
-
         if(findArticleOptional.isEmpty()) return false;
 
         Article article = findArticleOptional.get();
@@ -44,5 +45,18 @@ public class ArticleService {
         article.setKeyword(modifiedArticle.getKeyword());
 
         return true;
+    }
+
+    /**
+     * 기사 삭제
+     * */
+    @Transactional
+    public boolean deleteArticle(Long articleId) {
+        Optional<Article> findArticle = articleRepository.findById(articleId);
+        if(findArticle.isEmpty()) return false;
+
+        articleRepository.deleteById(articleId);
+        Optional<Article> deleteAfter = articleRepository.findById(articleId);
+        return deleteAfter.isEmpty()? true: false;
     }
 }
