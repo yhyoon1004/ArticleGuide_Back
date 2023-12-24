@@ -1,9 +1,6 @@
 package articleguide.restapi.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +19,13 @@ public class Article extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String category;
+    @Column(length = 50000)
+
     private String title;
+    @Column(length = 500000)
     private String content;
+    @Column(length = 10000)
+
     private String summary;
     private String keyword;
     private String byline;
